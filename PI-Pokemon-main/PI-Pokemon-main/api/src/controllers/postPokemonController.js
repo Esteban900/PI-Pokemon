@@ -1,7 +1,17 @@
+const { Pokemon, Type } = require('../db');
 
 
-const postPokemon = () => {
-    return("estoy en post controller")
+const createPokemon = async (name, image, hp, attack, defense, speed, height, weight, type) => {
+  const newPokemon = await Pokemon.create({
+    name, image, hp, attack, defense, speed, height, weight, type
+  });
+
+  const typeDb = await Type.findAll({
+    where: {name: type}
+  })
+
+  newPokemon.addType(typeDb);
+  return "Pokemon created successfully";
 };
 
-module.exports = {postPokemon};
+module.exports = {createPokemon};

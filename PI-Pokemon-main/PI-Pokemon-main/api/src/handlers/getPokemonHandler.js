@@ -15,8 +15,9 @@ try {
 
 const getIdPokemonHandler = async (req,res) => {
     const { id } = req.params;
+    const search = isNaN(id) ? "bdd" : "api";
     try {
-        const searchByIdPokemon = await getIdPokemon(id);
+        const searchByIdPokemon = await getIdPokemon(id, search);
         res.status(200).json({ searchByIdPokemon })
     } catch (error) {
         res.status(400).json({ error: error.message });

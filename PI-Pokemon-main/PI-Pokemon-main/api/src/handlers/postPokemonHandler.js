@@ -1,9 +1,9 @@
-const { postPokemon } = require('../controllers/postPokemonController');
+const { createPokemon } = require('../controllers/postPokemonController');
 
 const postPokemonHandler = async (req,res) => {
    const { name, image, hp, attack, defense, speed, height, weight} = req.body;
    try {
-    const newPokemon = await postPokemon(name, image, hp, attack, defense, speed, height, weight);
+    const newPokemon = await createPokemon(name, image, hp, attack, defense, speed, height, weight, type);
     res.status(200).json(newPokemon);
    } catch (error) {
     res.status(400).json({ error: error.message });
@@ -12,12 +12,3 @@ const postPokemonHandler = async (req,res) => {
 
 module.exports = postPokemonHandler;
 
-// ID. *
-// Nombre. *
-// Imagen. *
-// Vida. *
-// Ataque. *
-// Defensa. *
-// Velocidad.
-// Altura.
-// Peso.
